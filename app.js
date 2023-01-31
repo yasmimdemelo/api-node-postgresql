@@ -3,6 +3,8 @@ const express = require('express');
 //2º criamos uma instancia do express aplicativo
 const app = express();
 
+const pool = require('./data/db');
+
 //usamos app.get() para definirmos uma rota e a resposta correspondente
 app.get('/', (req, res) => {
     res.send("Hello, Express and Node.js");
