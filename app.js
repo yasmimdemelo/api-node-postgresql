@@ -78,6 +78,17 @@ app.put('/tasks/:id', async (req, res) => {
     }
 });
 
+//Delete a task
+app.delete('/tasks/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteTask = await pool.query("DELETE FROM tasks WHERE id = $1", [id]);
+        res.json("Task was deleted!");
+    } catch (err) {
+        console.log(err.message);
+    }
+});
+
 //app listen método para iniciar o servidor e escutar em uma porta específica
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
