@@ -9,8 +9,11 @@ const path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//Config files statics
+//Config statics files
 app.use(express.static(__dirname + '/public'));
+
+//Config database file
+// app.use(express.config(__dirname + '/config'));
 
 //usamos app.get() para definirmos uma rota e a resposta correspondente
 app.get('/', (req, res) => {
