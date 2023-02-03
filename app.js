@@ -1,14 +1,17 @@
-//1º solicitamos o express module
+//1º solicitamos o express module e 2º criamos uma instancia do express aplicativo
 const express = require('express');
-//2º criamos uma instancia do express aplicativo
 const app = express();
+
 //import modulo path
 const path = require('path');
 
-//Config o diretorio de view
+//Config o diretorio de view and view engine EJS
 app.set('views', path.join(__dirname, 'views'));
-//View engine to EJS
 app.set('view engine', 'ejs');
+
+//Config files statics
+app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'));
 
 //usamos app.get() para definirmos uma rota e a resposta correspondente
 app.get('/', (req, res) => {
