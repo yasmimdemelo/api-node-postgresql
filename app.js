@@ -2,13 +2,13 @@
 const express = require('express');
 const app = express();
 
-//Import body-parser para analisar corpos de solitações
-const bodyParser = require('body-parser');
+//Permite que um servidor envie uma resposta com cabeçalhos
+const cors = require('cors');
 
 //Importe db 
 const pool = require('./config/db');
 
-//import modulo path
+//Importe modulo path
 const path = require('path');
 
 //Config o diretorio de view and view engine EJS
@@ -18,34 +18,31 @@ app.set('view engine', 'ejs');
 //Config statics files
 app.use(express.static(__dirname + '/public'));
 
-//Configure o analisador de corpo para analisar corpos de solicitação JSON
-app.use(bodyParser.json());
+//Middleware
+app.use(cors());
+app.use(express.json());
 
-//usamos app.get() para definirmos uma rota e a resposta correspondente
+//Usamos app.get() para definirmos uma rota e a resposta correspondente
 app.get('/', (req, res) => {
     res.render('index', {name: 'My Express App'});
 });
 
-app.post('/task', async (req, res) => {
+app.post('/tasks', async (req, res) => {
     try {
         //Extract task_name from request body
         const { task_name } = req.body;
 
-        //Insert the new taskinto the database
-        const client = await pool.connect();
-        const result = await client.query('INSERT INTO tasks (task_name) VALUES($1) RETURNING task_name', [task_name]);
-        const id = result.rows[0].id;
-        client.release(); //release libera a conexao do cliente acima com o database
+        //Insert the new task into the database
+        const newTodo = await pool.query(
+            "INSERT INTO tasks (task_name) VALUES($1) RETURNING *", [ task_name ]);
 
         //Send the newly created task in the response
-        res.status(201).send({ task_name });
+        res.json(newTodo.rows[0]);
 
     } catch (err) {
-        console.error(err);
-        res.status(500).send("Error inserting task into database");
+        console.error(err.message);
     }
 });
-
 
 //app listen método para iniciar o servidor e escutar em uma porta específica
 app.listen(3000, () => {
