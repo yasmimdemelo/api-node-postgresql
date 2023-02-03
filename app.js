@@ -45,7 +45,7 @@ app.post('/tasks', async (req, res) => {
     }
 });
 
-//get all tasks
+//Get all tasks
 app.get('/tasks', async (req, res) => {
     try {
         const allTask = await pool.query("SELECT * FROM tasks");
@@ -55,7 +55,7 @@ app.get('/tasks', async (req, res) => {
     }
 });
 
-//get a task
+//Get a task
 app.get('/tasks/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -66,6 +66,17 @@ app.get('/tasks/:id', async (req, res) => {
     }
 });
 
+//Update a task
+app.put('/tasks/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { task_name } = req.body;
+        const updateTask = await pool.query("UPDATE tasks SET task_name = $1 WHERE id = $2", [task_name, id ]);
+        res.json("Task was updated!");
+    } catch (err) {
+        console.error(err.message);        
+    }
+});
 
 //app listen método para iniciar o servidor e escutar em uma porta específica
 app.listen(3000, () => {
