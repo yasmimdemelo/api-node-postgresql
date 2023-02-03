@@ -10,8 +10,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //Config files statics
-app.use('/static', express.static(path.join(__dirname, 'public')))
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 //usamos app.get() para definirmos uma rota e a resposta correspondente
 app.get('/', (req, res) => {
