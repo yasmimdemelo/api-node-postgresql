@@ -27,22 +27,45 @@ app.get('/', (req, res) => {
     res.render('index', {name: 'My Express App'});
 });
 
+//Create a task
 app.post('/tasks', async (req, res) => {
     try {
         //Extract task_name from request body
         const { task_name } = req.body;
 
         //Insert the new task into the database
-        const newTodo = await pool.query(
+        const newTask = await pool.query(
             "INSERT INTO tasks (task_name) VALUES($1) RETURNING *", [ task_name ]);
 
         //Send the newly created task in the response
-        res.json(newTodo.rows[0]);
+        res.json(newTask.rows[0]);
 
     } catch (err) {
         console.error(err.message);
     }
 });
+
+//get all tasks
+app.get('/tasks', async (req, res) => {
+    try {
+        const allTask = await pool.query("SELECT * FROM tasks");
+        res.json(allTask.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//get a task
+app.get('/tasks/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const task = await pool.query("SELECT * FROM tasks WHERE id = $1", [id]);
+        res.json(task.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
 
 //app listen método para iniciar o servidor e escutar em uma porta específica
 app.listen(3000, () => {
