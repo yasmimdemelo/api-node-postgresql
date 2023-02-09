@@ -4,64 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS style-->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- font-awesome é o kit de ferramentas de fonte e ícone mais famoso baseado em CSS, através do CDN faz com que funcionem para o maior número de pessoas possível. -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <title>Todo App</title>
+    <title> Index EJS</title>
 </head>
 <body>
-    <h1>TODO APP</h1>
-    <p>Hello, <%= name %> </p>
-    <div class="container">
-
-        <div class="left">
-
-            <form id="form">
-
-                <label for="post"></label>
-                <br>
-                <textarea name="post" id="input" cols="30" rows="10" placeholder="Write your task here..."></textarea>
-                <br><br>
-                <div id="msg"></div>
-                <button type="submit">Add</button>
-
-            </form>
-
-        </div>
-
-        <div class="right">
-
-            <h3>Your tasks</h3>
-            <div id="posts">
-
-                <!--This ao elemento que disparou o evento, neste caso os buttons delete and edit-->
-                <div>
-                    <p>Go to organic store</p>
-                    <span class="options">     
-                        <i onClick="editPost(this)" class="fas fa-edit"></i>
-                        <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>
-                    </span>
-
-                </div>
-
-                <div>
-                    <p>Hello World</p>
-                    <span class="options">
-                        <i onCLick="editPost(this)" class="fas fa-edit"></i>
-                        <i onClick="deletePost(this)" class="fas fa-trash-alt"></i>  
-                    </span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- JavaScript -->
-    <script src="main.js"></script>
-    <!--Database -->
-    <script src="db.js"></script>
+    <h1>Hello, <%= name %></h1>   
 </body>
 </html>
