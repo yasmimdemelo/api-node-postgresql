@@ -10,6 +10,7 @@ const pool = require('./config/db');
 
 //Importe modulo path
 const path = require('path');
+const { json } = require('body-parser');
 
 //Config o diretorio de view and view engine EJS
 app.set('views', path.join(__dirname, 'views'));
@@ -52,29 +53,46 @@ app.get('/tasks', async (req, res) => {
         res.json(allTask.rows);
     } catch (err) {
         console.error(err.message);
+        res.status(500).json({ error : "Something went wrong"});
     }
 });
 
 //Get a task
+//task.rows[0] = verifica se a task existe no database
+//O operador "!", nega o valor.
 app.get('/tasks/:id', async (req, res) => {
     try {
         const { id } = req.params;
+
         const task = await pool.query("SELECT * FROM tasks WHERE id = $1", [id]);
+        if (!task.rows[0]) {
+            return res.status(404).json({ error: "Task not found"});
+        }
         res.json(task.rows[0]);
     } catch (err) {
         console.error(err.message);
+        res.status(500).json({ error : "Something went wrong"});
     }
 });
 
 //Update a task
+//A expressão task.rows.length === 0, verifica se o comprimento da rows propriedade array da task objeto é igual a zero.
+//Se === 0 for TRUE, significa que a matriz está vazia e não contém um ou mais elementos.
+// rows é a matriz de id.
 app.put('/tasks/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { task_name } = req.body;
+
+        const task = await pool.query("SELECT * FROM tasks WHERE id= $1", [id]);
+        if (task.rows.length === 0) {
+            return res.status(404).json( {message: "Task not found to update!" });
+        }
+
         const updateTask = await pool.query("UPDATE tasks SET task_name = $1 WHERE id = $2", [task_name, id ]);
         res.json("Task was updated!");
     } catch (err) {
-        console.error(err.message);        
+        console.error(err.message);   
     }
 });
 
@@ -82,11 +100,22 @@ app.put('/tasks/:id', async (req, res) => {
 app.delete('/tasks/:id', async (req, res) => {
     try {
         const { id } = req.params;
+
+        const task = await pool.query("SELECT * FROM tasks WHERE id= $1", [id]);
+        if (task.rows.length === 0) {
+            return res.status(404).json( { message: "Task not found to delete!" });
+        }
+        
         const deleteTask = await pool.query("DELETE FROM tasks WHERE id = $1", [id]);
         res.json("Task was deleted!");
     } catch (err) {
         console.log(err.message);
     }
+});
+
+//Catch-all route
+app.use((req, res, next) => {
+    res.status(404).send({ error: 'Not found' });
 });
 
 //app listen método para iniciar o servidor e escutar em uma porta específica
