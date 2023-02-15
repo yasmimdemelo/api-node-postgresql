@@ -36,8 +36,8 @@ Comandos para executar:
 - npm start
   - Executar aplicação
 
-- Exucutar docker
-  docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
+- Executar docker
+  - docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 
 - Configure as rotas e teste a conexão com o database.
 
