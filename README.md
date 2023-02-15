@@ -1,5 +1,5 @@
 # api-node-postgresql
-Este projeto tem como finalidade configurar um servidor de backend, configurar um banco de dados e integra-los.
+Este projeto tem como finalidade configurar um servidor de backend, configurar um banco de dados e integrá-los.
 
 Este projeto é parte de uma aplicação PERN stack que é uma pilha que consiste em:
 - PostgreSQL como banco de dados;
