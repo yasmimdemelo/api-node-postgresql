@@ -23,23 +23,25 @@ Softwares:
 - Pg Admin 4
 
 Comandos para executar:
-- npm init -y
-  - Instala sem precisar configurar o arquivo JSON
 
-- npm install
+1. npm install
   - Para instalar todas as dependências
 
-- npm i --save-dev nodemon
-  - O Nodemon é um utilitário que reinicia automaticamente um aplicativo Node.js.
-  - Adicione ao script debug: "start": "nodemon server.js"
-
-- npm start
+2. npm start
   - Executar aplicação
 
-- Executar docker
+3. Executar docker
   - docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
 
-- Configure as rotas e teste a conexão com o database.
+4. Configure o banco de dados:
+  - Em database.sql contém as informações.
+
+5. Teste a conexão com o banco de dados através do Thunder client:
+  - Crie uma task_name: POST / http://localhost:5000/tasks/
+  - Liste todas as task_name: GET / http://localhost:5000/tasks
+  - Liste uma task_name: GET / http://localhost:5000/tasks/2
+  - Atualize uma task_name: PUT / http://localhost:5000/tasks/1
+  - Delete uma task_name: DELETE / http://localhost:5000/tasks/1
 
 ## Purpose for me 🎯
 Estudar e entender o funcionamento PERN stack, que irei separar em 2 projetos.
