@@ -1,4 +1,4 @@
-# api-node-postgresql
+# api-node-postgresql 💻
 Este projeto tem como finalidade configurar um servidor de backend, configurar um banco de dados e integrá-los.
 
 Este projeto é parte de uma aplicação PERN stack que é uma pilha que consiste em:
@@ -9,7 +9,7 @@ Este projeto é parte de uma aplicação PERN stack que é uma pilha que consist
 
 ## Pré-requisitos 🚀
 
-### Conhecimento
+### Conhecimento 
 - HTML.
 - CSS.
 - JavaScript.
@@ -43,7 +43,7 @@ Comandos para executar:
   - Atualize uma task_name: PUT / http://localhost:5000/tasks/1
   - Delete uma task_name: DELETE / http://localhost:5000/tasks/1
 
-## Purpose for me 🎯
+## Propósito para mim 🎯
 Estudar e entender o funcionamento PERN stack, que irei separar em 2 projetos.
 Anteriormente já havia estudado JavaScript e feito um projeto usando um CRUD puro em JS, que é um mecanismo que permite criar, ler, editar e excluir dados.
 Com esse projeto anterior testei um aplicativo simples e aprendi como o JavaScript funciona.
