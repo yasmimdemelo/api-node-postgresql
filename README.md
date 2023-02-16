@@ -34,10 +34,13 @@ Comandos para executar:
 3. docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
   - Container que tem a instância da imagem docker.
 
-4. Crie a database e a tabela:
+4. Crie uma database no Pg Adm 4, que é um sistema de gerenciamento de banco de dados relacional PostgreSQL (RDBMS)
+  - Clique em: "Databases" e selecione "Create" > "Database..." e nomeie a tabela como pern.
+  
+5. Crie a tabela dentro de pern database:
   - Em database.sql contém as informações.
 
-5. Teste a aplicação com os métodos e endpoints abaixo através do Thunder client:
+6. Teste a aplicação com os métodos e endpoints abaixo através do Thunder client:
   - Crie uma task_name: POST / http://localhost:5000/tasks/
     - Body:
       {
