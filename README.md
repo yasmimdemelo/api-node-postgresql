@@ -34,7 +34,7 @@ Comandos para executar:
 3. docker run --name postgresql -e POSTGRES_USER=myusername -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
   - Container que tem a instância da imagem docker.
 
-4. Configure o banco de dados:
+4. Crie a database e a tabela:
   - Em database.sql contém as informações.
 
 5. Teste a aplicação com os métodos e endpoints abaixo através do Thunder client:
@@ -53,5 +53,5 @@ Comandos para executar:
   - Delete uma task_name: DELETE / http://localhost:5000/tasks/1
 
 ## Propósito para mim 🎯
-Estudar e entender o funcionamento PERN stack, que separei em 2 projetos, o primeiro é este configurando um servidor beckend e o segundo é o frontend com a aplicação React.
+Estudar e entender o funcionamento PERN stack, que separei em 2 projetos, o primeiro é este configurando um servidor backend e o segundo é o frontend com a aplicação React.
 Anteriormente já havia estudado JavaScript e feito um projeto usando um CRUD puro em JS, que é um mecanismo que permite criar, ler, editar e excluir dados, com isto testei um aplicativo simples e aprendi como o JavaScript funciona.
