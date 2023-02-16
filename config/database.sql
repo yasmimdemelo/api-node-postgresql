@@ -1,6 +1,3 @@
-/* Create database */
-CREATE DATABASE pern;
-
 /* Create table */
 CREATE TABLE IF NOT EXISTS tasks (
 id serial PRIMARY KEY,
